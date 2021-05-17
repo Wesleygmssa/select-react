@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import AsyncSelect from "react-select/async";
+// import { colourOptions } from "../data";
+
+const colourOptions = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+  { value: "Wesley", label: "Strawberry" },
+  { value: "Guerra", label: "Vanilla" },
+  { value: "Teste", label: "Strawberry" },
+  { value: "Carro", label: "Vanilla" },
+];
+
+const filterColors = (inputValue) => {
+  return colourOptions.filter((i) =>
+    i.label.toLowerCase().includes(inputValue.toLowerCase())
   );
-}
+};
 
-export default App;
+const promiseOptions = (inputValue) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(filterColors(inputValue));
+    }, 1000);
+  });
+
+export default class App extends Component {
+  render() {
+    return (
+      <AsyncSelect cacheOptions defaultOptions loadOptions={promiseOptions} />
+    );
+  }
+}
