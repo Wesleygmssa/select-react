@@ -7,10 +7,10 @@ const colourOptions = [
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
   { value: "vanilla", label: "Vanilla" },
-  { value: "Wesley", label: "Strawberry" },
-  { value: "Guerra", label: "Vanilla" },
-  { value: "Teste", label: "Strawberry" },
-  { value: "Carro", label: "Vanilla" },
+  { value: "Wesley", label: "Wesley" },
+  { value: "Wesley", label: "Wallace" },
+  { value: "Wesley", label: "Wagner" },
+  { value: "Carro", label: "Carro" },
 ];
 
 const filterColors = (inputValue) => {
@@ -23,13 +23,11 @@ const promiseOptions = (inputValue) =>
   new Promise((resolve) => {
     setTimeout(() => {
       resolve(filterColors(inputValue));
-    }, 1000);
+    }, 3000);
   });
 
 export default class App extends Component {
   render() {
-    return (
-      <AsyncSelect cacheOptions defaultOptions loadOptions={promiseOptions} />
-    );
+    return <AsyncSelect loadOptions={promiseOptions} />;
   }
 }
